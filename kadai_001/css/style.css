@@ -1,0 +1,136 @@
+/* PC、スマホ共通スタイル */
+* {
+  box-sizing: border-box;
+}
+body {
+  font-size: 18px;
+  font-family: "Noto Sans Japanese";
+  padding: 0;
+  margin: 0;
+}
+
+/* ヘッダー */
+.header-inner {
+  font-size: 34px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px auto;
+  max-width: 980px;
+}
+.header-inner a {
+  text-decoration: none;
+  font-size: 34px;
+  color: #000000;
+}
+h1 {
+  font-size: 34px;
+  color: #000000;
+  border: 2px solid black;
+  padding: 0 20px 0 20px;
+  margin: 0 0 0 30px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+.nav-menu {
+  font-size: 34px;
+  display: flex;
+  list-style: none;
+  margin: 0 30px;
+}
+nav li {
+  padding: 0 20px;
+}
+.nav-menu a {
+  font-size: 34px;
+  font-weight: bold;
+}
+
+/* メイン画像 */
+.image {
+  width: 100%;
+}
+
+/* About */
+.about-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 980px;
+  margin: 30px auto;
+}
+#about {
+  text-align: center;
+  font-size: 34px;
+  font-weight: bold;
+}
+.about-left {
+  border-radius: 50%;
+  height: 280px;
+  width: 280px;
+}
+.about-right p span {
+  font-size: 24px;
+  font-weight: bold;
+}
+.about-right {
+  margin: 0 auto;
+}
+p, li {
+  font-size: 18px;
+}
+
+/* Works */
+#works {
+  text-align: center;
+  font-size: 34px;
+  font-weight: bold;
+}
+.works-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 980px;
+}
+.works-item {
+  margin: 0 10px;
+  width: 30%;
+  padding-bottom: 50px;
+}
+.works-item img {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* フッター */
+.footer {
+  text-align: center;
+  font-size: 18px;
+}
+
+/* レスポンシブ */
+@media screen and (max-width: 767px) {
+  .about-inner {
+    width: 100%;
+    flex-direction: column;
+  }
+  .about-left {
+    width: 100%;
+  }
+  .about-right p {
+    text-align: center;
+  }
+  .works-inner {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .works-item {
+    width: 100%;
+  }
+  .works-item p {
+    text-align: center;
+  }
+}
