@@ -56,9 +56,7 @@
 <body>
 <header>
   <div class="wrap header-inner">
-    <a class="brand" href="#top">
-      <img src="logo.png" alt="プレザントヒルズ">
-    </a>
+    <a class="brand" href="#top">Preasant Hills</a>
     <nav class="header-nav">
       <a href="#facilities">施設案内</a>
       <a href="#pricing">ご利用料金</a>
@@ -86,7 +84,7 @@
   </nav>
 </div>
 
-<div id="top" class="hero">
+<div id="top" class="hero hero-variant-a">
   <div class="hero-slide is-active" style="background-image:url('img01.jpg')"></div>
   <div class="hero-slide" style="background-image:url('img02.jpg')"></div>
   <div class="hero-slide" style="background-image:url('img03.jpg')"></div>
@@ -96,11 +94,13 @@
   <button class="hero-arrow hero-arrow-next" type="button" aria-label="次の画像">
     <svg viewBox="0 0 24 24"><polyline points="9 5 16 12 9 19"></polyline></svg>
   </button>
-  <div class="wrap hero-content">
-    <div class="hero-text">
-      <span class="eyebrow">PREASANT HILLS</span>
-      <h1>当施設は、アプローチ＆バンカー＆パターの練習に特化した施設です。</h1>
-    </div>
+  <div class="hero-va-tint"></div>
+  <div class="hero-va-left">
+    <img class="hero-va-logo" src="logo.png" alt="Preasant Hills">
+  </div>
+  <div class="hero-va-overlay">
+    <span class="eyebrow">PREASANT HILLS</span>
+    <h1>当施設は、アプローチ＆バンカー＆パターの練習に特化した施設です。</h1>
     <!-- TODO: Googleフォーム作成後、下記URLを実際のフォームURLに差し替えてください -->
     <a class="btn" href="https://forms.gle/REPLACE_WITH_YOUR_FORM_ID" target="_blank" rel="noopener">
       こちらからお問い合わせください。
@@ -116,12 +116,12 @@
 
 <section id="facilities">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">FACILITIES</span>
       <h2>施設案内</h2>
     </div>
     <div class="facility-grid">
-      <article class="facility-card">
+      <article class="facility-card reveal">
         <img class="photo" src="img04.jpg" alt="バンカー練習施設">
         <div class="body">
           <span class="tag">BUNKER</span>
@@ -129,7 +129,7 @@
           <p>本格的なバンカーを再現した練習エリアで、砂の抜け感やライの違いを実戦感覚で練習できます。</p>
         </div>
       </article>
-      <article class="facility-card">
+      <article class="facility-card reveal">
         <img class="photo" src="img05.jpg" alt="アプローチ練習施設">
         <div class="body">
           <span class="tag">APPROACH</span>
@@ -137,7 +137,7 @@
           <p>距離感を養う起伏のあるフェアウェイで、様々なライからのアプローチショットを練習できます。</p>
         </div>
       </article>
-      <article class="facility-card">
+      <article class="facility-card reveal">
         <img class="photo" src="img06.jpg" alt="パター練習施設">
         <div class="body">
           <span class="tag">PUTTING</span>
@@ -151,16 +151,16 @@
 
 <section id="pricing">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">PRICE / HOURS</span>
       <h2>ご利用料金・営業時間</h2>
     </div>
-    <div class="hours-bar">
+    <div class="hours-bar reveal">
       <span class="hours-label">営業時間</span>
       <span class="hours-value">AM9:30〜日没<span class="hours-note">（最終受付 日没1時間前）</span></span>
     </div>
     <div class="price-grid">
-      <article class="price-card">
+      <article class="price-card reveal">
         <div class="price-card-head">
           <span class="tag">VISITOR</span>
           <h3>ビジター料金</h3>
@@ -170,7 +170,7 @@
           <li><span>1時間</span><span class="price">¥2,000</span></li>
         </ul>
       </article>
-      <article class="price-card">
+      <article class="price-card reveal">
         <div class="price-card-head">
           <span class="tag">MEMBER</span>
           <h3>会員料金</h3>
@@ -185,7 +185,7 @@
           <li><span>会員回数券<small>1時間券11回分</small></span><span>¥18,000</span></li>
         </ul>
       </article>
-      <article class="price-card">
+      <article class="price-card reveal">
         <div class="price-card-head">
           <span class="tag">FRIENDS</span>
           <h3>フレンズ</h3>
@@ -202,12 +202,12 @@
 
 <section id="faq" class="faq-section">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">FAQ</span>
       <h2>よくある質問</h2>
     </div>
     <div class="faq-list">
-      <div class="faq-item is-open">
+      <div class="faq-item is-open reveal">
         <button class="faq-q" aria-expanded="true">
           <span class="q-mark">Q</span>
           <span class="q-text">行き方が分からないですが、どう行けば良いですか？</span>
@@ -217,7 +217,7 @@
           <div class="faq-a-inner">Google mapで検索いただくか、Instagramに案内リールを掲載していますので、ご覧ください。</div>
         </div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">
           <span class="q-mark">Q</span>
           <span class="q-text">予約なしで行っても良いですか？</span>
@@ -227,7 +227,7 @@
           <div class="faq-a-inner">予約なしでも来ていただいても可能ですが、予約優先で案内させていただきますのでご了承ください。</div>
         </div>
       </div>
-      <div class="faq-item">
+      <div class="faq-item reveal">
         <button class="faq-q" aria-expanded="false">
           <span class="q-mark">Q</span>
           <span class="q-text">道具の貸し出しはありますか？</span>
@@ -242,7 +242,7 @@
 </section>
 
 <section id="reserve">
-  <div class="wrap cta-band">
+  <div class="wrap cta-band reveal">
     <span class="eyebrow">RESERVATION</span>
     <h2>ご予約はコチラ↓↓</h2>
     <!-- TODO: Googleフォーム作成後、下記URLを実際のフォームURLに差し替えてください -->
