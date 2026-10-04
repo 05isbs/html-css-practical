@@ -84,7 +84,18 @@
   </nav>
 </div>
 
-<div id="top" class="hero hero-variant-a">
+<!--
+  変更: ファーストビュー(#top .hero)のHTML構造を変更。
+  ・class名を hero-variant-a → hero-variant-b2 に変更(レイアウト種別の区別用)
+  ・旧: .hero-va-left(ロゴを左40%に配置)と .hero-va-overlay(説明文・CTAを右下に配置)の
+        左右分割構造を削除
+  ・新: .hero-vb2-content 1個の中に、ロゴ画像(.hero-vb2-logo)→説明文(.hero-vb2-text)→
+        CTAボタン(a.btn)の順で縦に並べ、画面中央に配置する構造に変更
+  ・背景の暗幕を .hero-va-tint(左右非対称のグラデーション)から
+        .hero-vb2-tint(中央から外側に広がる放射状グラデーション)に変更
+  ・スライドショー(.hero-slide×3)、矢印ボタン、ドットナビゲーションは変更なし
+-->
+<div id="top" class="hero hero-variant-b2">
   <div class="hero-slide is-active" style="background-image:url('img01.jpg')"></div>
   <div class="hero-slide" style="background-image:url('img02.jpg')"></div>
   <div class="hero-slide" style="background-image:url('img03.jpg')"></div>
@@ -94,13 +105,13 @@
   <button class="hero-arrow hero-arrow-next" type="button" aria-label="次の画像">
     <svg viewBox="0 0 24 24"><polyline points="9 5 16 12 9 19"></polyline></svg>
   </button>
-  <div class="hero-va-tint"></div>
-  <div class="hero-va-left">
-    <img class="hero-va-logo" src="logo.png" alt="Preasant Hills">
-  </div>
-  <div class="hero-va-overlay">
-    <span class="eyebrow">PREASANT HILLS</span>
-    <h1>当施設は、アプローチ＆バンカー＆パターの練習に特化した施設です。</h1>
+  <div class="hero-vb2-tint"></div>
+  <div class="hero-vb2-content">
+    <img class="hero-vb2-logo" src="logo.png" alt="Preasant Hills">
+    <div class="hero-vb2-text">
+      <span class="eyebrow">PREASANT HILLS</span>
+      <h1>当施設は、アプローチ＆バンカー＆パターの練習に特化した施設です。</h1>
+    </div>
     <!-- TODO: Googleフォーム作成後、下記URLを実際のフォームURLに差し替えてください -->
     <a class="btn" href="https://forms.gle/REPLACE_WITH_YOUR_FORM_ID" target="_blank" rel="noopener">
       こちらからお問い合わせください。
@@ -113,6 +124,7 @@
     <button aria-label="スライド3"></button>
   </div>
 </div>
+<!-- 変更ここまで(ファーストビューHTML) -->
 
 <section id="facilities">
   <div class="wrap">

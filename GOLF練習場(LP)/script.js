@@ -92,6 +92,24 @@
       reveals.forEach(function(el){ el.classList.add('is-visible'); });
       return;
     }
+    /*
+      変更: スクロール表示(.reveal)の発火タイミングの基準を、
+      「画面の半分(中央)に差し掛かった時点」から「画面の下から1/3の高さに
+      差し掛かった時点」に変更(基準を画面のより低い位置に変更=より早いタイミングで表示開始)。
+      ・旧: { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+        (要素が20%弱見えた頃、画面下端から40px内側に入った時点で発火)
+      ・中間段階: { threshold: 0, rootMargin: '0px 0px -50% 0px' }
+        (判定領域の下端を画面下端からビューポート高さの50%分だけ上に引き上げ、
+        画面の縦方向中央を基準にしていた)
+      ・新: { threshold: 0, rootMargin: '0px 0px -33.3333% 0px' }
+        (rootMarginの下端の引き上げ量を50%→33.3333%(1/3)に縮小。
+        これにより判定領域の下端が、画面下端から高さの1/3だけ上=
+        画面の下から1/3の高さの位置になる。中央より低い位置が基準になるため、
+        要素の上端がその高さを通過した時点=画面の半分より早いタイミングで
+        isIntersecting=trueとなり、is-visibleが付与される=表示アニメーションが
+        より早く開始するようになる)
+      ・コールバック内のロジック(is-visible付与 → unobserveで監視終了)自体は変更なし
+    */
     var observer = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if (entry.isIntersecting) {
@@ -99,7 +117,8 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px -33.3333% 0px' });
+    // 変更ここまで(スクロール表示の発火タイミング)
     reveals.forEach(function(el){ observer.observe(el); });
   })();
 

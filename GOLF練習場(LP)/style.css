@@ -288,49 +288,60 @@
     background:linear-gradient(0deg, rgba(15,20,12,0.78) 0%, rgba(15,20,12,0.32) 46%, rgba(15,20,12,0.12) 100%);
     z-index:1;
   }
-  .hero-va-tint{
-    position:absolute;
-    inset:0;
-    z-index:1;
-    background:
-      linear-gradient(0deg, rgba(50,50,50,0.6) 0%, rgba(50,50,50,0.24) 42%, rgba(50,50,50,0) 70%),
-      linear-gradient(90deg, rgba(90,90,90,0.2) 0%, rgba(90,90,90,0) 48%);
-  }
-  .hero-va-left{
-    position:absolute;
-    inset:0 60% 0 0;
-    z-index:2;
+  /*
+     変更: ファーストビュー用のCSSを、左右分割レイアウト用(.hero-va-*)から
+     中央配置レイアウト用(.hero-variant-b2 / .hero-vb2-*)に置き換え。
+     ・.hero-variant-b2: 元の.hero-va-left/.hero-va-overlayによる左右分割(横並び)をやめ、
+       align-items:center; justify-content:center; で画面中央に1カラムでまとめる指定に変更
+     ・.hero-vb2-tint: 背景の暗幕を、左右非対称のグラデーション(.hero-va-tint)から
+       中心から外側へ広がるradial-gradientに変更(中央配置のロゴを目立たせるため)
+     ・.hero-vb2-content: ロゴ・説明文・CTAを縦に並べるflex-direction:columnのラッパーを新設
+       (max-width:760px、gap:22pxで要素間の余白を確保)
+     ・.hero-vb2-logo: ロゴの max-width を旧設定の480px→960pxに変更(2倍のサイズ)
+     ・.hero-vb2-text / h1: 説明文の文字色・フォントサイズ指定を、旧.hero-va-overlay h1から
+       そのまま引き継いで新セレクタに付け替え
+  */
+  .hero-variant-b2{
+    position:relative;
+    overflow:hidden;
+    min-height:560px;
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:40px;
   }
-  .hero-va-logo{
-    width:92%;
-    max-width:480px;
-    height:auto;
-    display:block;
-    filter:drop-shadow(0 12px 28px rgba(0,0,0,0.4));
-  }
-  .hero-va-overlay{
+  .hero-vb2-tint{
     position:absolute;
-    z-index:2;
-    left:40%;
-    right:0;
-    bottom:0;
-    padding:36px 44px 40px;
-    color:#fff;
+    inset:0;
+    z-index:1;
+    background:radial-gradient(ellipse at center, rgba(40,40,40,0.55) 0%, rgba(40,40,40,0.28) 45%, rgba(40,40,40,0.08) 72%, rgba(40,40,40,0) 100%);
   }
-  .hero-va-overlay .eyebrow{color:#CFE0C6;}
-  .hero-va-overlay .eyebrow::before{background:#CFE0C6;}
-  .hero-va-overlay h1{
+  .hero-vb2-content{
+    position:relative;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:22px;
+    padding:40px;
+    max-width:760px;
+  }
+  .hero-vb2-logo{
+    width:100%;
+    max-width:960px;
+    height:auto;
+    filter:drop-shadow(0 14px 34px rgba(0,0,0,0.45));
+  }
+  .hero-vb2-text .eyebrow{color:#CFE0C6;}
+  .hero-vb2-text .eyebrow::before{background:#CFE0C6;}
+  .hero-vb2-text h1{
     color:#fff;
     font-size:clamp(1.15rem, 2.1vw, 1.7rem);
     font-weight:700;
-    margin:10px 0 22px;
-    max-width:520px;
+    margin:10px 0 0;
     line-height:1.5;
   }
+  /* 変更ここまで(ファーストビュー基本CSS) */
   .hero-dots{
     position:absolute;
     z-index:2;
@@ -797,16 +808,20 @@
     .price-grid{grid-template-columns:1fr;gap:28px;}
     .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
     .footer-brand{grid-column:1 / -1;}
-    .hero{min-height:640px;}
-    .hero-va-tint{
-      background:
-        linear-gradient(0deg, rgba(50,50,50,0.68) 0%, rgba(50,50,50,0.3) 55%, rgba(50,50,50,0) 78%),
-        linear-gradient(180deg, rgba(90,90,90,0.22) 0%, rgba(90,90,90,0) 45%);
-    }
-    .hero-va-left{inset:0 0 60% 0;padding:28px;}
-    .hero-va-logo{max-width:390px;}
-    .hero-va-overlay{left:0;top:40%;bottom:0;text-align:center;display:flex;flex-direction:column;align-items:center;}
-    .hero-va-overlay h1{margin-inline:auto;}
+    /*
+      変更: タブレット幅(1279px以下)のファーストビュー調整。
+      旧設定(.hero-va-left/.hero-va-overlayの左右分割用の高さ・余白指定)を削除し、
+      中央配置レイアウト用に以下を新設:
+      ・.hero-variant-b2 の min-height を 640px→720px に変更(ロゴが大きくなった分、
+        縦方向の表示スペースを拡大)
+      ・.hero-vb2-logo の max-width を 720px に設定(タブレット幅でも2倍サイズ感を維持しつつ
+        画面幅に収まるよう調整)
+      ・.hero-vb2-content の padding を 32px、要素間の gap を 18px に設定
+    */
+    .hero-variant-b2{min-height:720px;}
+    .hero-vb2-logo{max-width:720px;}
+    .hero-vb2-content{padding:32px;gap:18px;}
+    /* 変更ここまで(タブレット幅ファーストビュー) */
     section{padding-block:72px;}
 
     /* ヘッダー：タブレット/スマホはハンバーガーメニューに集約（タブレットはオフキャンバス表示） */
@@ -820,10 +835,18 @@
     .footer-grid{grid-template-columns:1fr;gap:32px;}
     .header-inner{padding-block:10px;}
     .brand{font-size:1.05rem;}
-    .hero{min-height:560px;}
-    .hero-va-left{padding:20px;}
-    .hero-va-logo{max-width:220px;}
-    .hero-va-overlay{padding:20px 20px 28px;}
+    /*
+      変更: スマホ幅(767px以下)のファーストビュー調整。
+      ・.hero-variant-b2 の min-height を 560px に設定
+      ・.hero-vb2-logo の max-width を 440px に設定(タブレット同様、2倍サイズ感を保ちつつ
+        スマホ幅でも収まるよう縮小)
+      ・.hero-vb2-content の padding を 24px、要素間の gap を 16px に設定(スマホ幅では
+        余白をやや詰めて表示領域を確保)
+    */
+    .hero-variant-b2{min-height:560px;}
+    .hero-vb2-logo{max-width:440px;}
+    .hero-vb2-content{padding:24px;gap:16px;}
+    /* 変更ここまで(スマホ幅ファーストビュー) */
     section{padding-block:56px;}
     .section-head{margin-bottom:36px;}
     .facility-card .body{padding:22px 20px 26px;}
@@ -834,7 +857,10 @@
 
     /* CTAボタンはさらに縮小し、ヒーロー内では行幅いっぱいに */
     .btn{padding:12px 18px;font-size:.85rem;white-space:normal;text-align:center;max-width:100%;}
-    .hero-va-overlay .btn{align-self:stretch;justify-content:center;}
+    /* 変更: CTAボタンをスマホ幅で全幅表示にする指定のセレクタを、
+       旧 .hero-va-overlay .btn から新しいHTML構造に合わせて .hero-vb2-content .btn に付け替え
+       (align-self:stretchで横幅いっぱいに、justify-content:centerでボタン内テキストを中央揃え) */
+    .hero-vb2-content .btn{align-self:stretch;justify-content:center;}
 
     .hero-arrow{width:36px;height:36px;}
     .hero-arrow svg{width:15px;height:15px;}
@@ -862,9 +888,18 @@
       transition:none;
     }
   }
-  .facility-grid > .reveal:nth-child(2){transition-delay:.1s;}
-  .facility-grid > .reveal:nth-child(3){transition-delay:.2s;}
-  .price-grid > .reveal:nth-child(2){transition-delay:.1s;}
-  .price-grid > .reveal:nth-child(3){transition-delay:.2s;}
+  /*
+    変更: 施設案内(.facility-grid)・料金(.price-grid)の3カラムの
+    スクロール表示タイミングを、左から順に時間差をつけて表示するよう変更。
+    ・変更履歴: 元の .1s / .2s (0.1秒間隔) → 1s / 2s (1秒間隔)
+      → 0.5s / 1s (0.5秒間隔) → 今回さらに 0.3s / 0.6s (0.3秒間隔)に変更
+    ・1カラム目(nth-child(1))は delay指定なし(0秒、表示位置に到達次第すぐ表示)
+    ・2カラム目(nth-child(2))は0.3秒後、3カラム目(nth-child(3))は0.6秒後に表示
+  */
+  .facility-grid > .reveal:nth-child(2){transition-delay:.3s;}
+  .facility-grid > .reveal:nth-child(3){transition-delay:.6s;}
+  .price-grid > .reveal:nth-child(2){transition-delay:.3s;}
+  .price-grid > .reveal:nth-child(3){transition-delay:.6s;}
+  /* 変更ここまで(3カラムの表示間隔) */
   .faq-list > .reveal:nth-child(2){transition-delay:.08s;}
   .faq-list > .reveal:nth-child(3){transition-delay:.16s;}
